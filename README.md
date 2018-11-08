@@ -1,9 +1,9 @@
 
-## ANOVA - Analysis of Variance 
+# ANOVA 
 
 ## Introduction
 
-ANOVA is a method for generalizing of previous discussion regarding statistical tests to multiple groups. As we will see, ANOVA then partitions our total sum of square of deviations (from the mean) into sum of squares for each of these groups and sum of squares for error. 
+ANOVA (Analysis of Variance) is a method for generalizing of previous discussion regarding statistical tests to multiple groups. As we will see, ANOVA then partitions our total sum of square of deviations (from the mean) into sum of squares for each of these groups and sum of squares for error. 
 
 ## Objectives
 
@@ -12,7 +12,7 @@ You will be able to:
 * Understand and explain the methodology behind ANOVA tests
 
 
-## Explanation of ANOVA. 
+## Explanation of ANOVA
 
 Again ANOVA generalizes our procedures to test differences, such as in the mean of populations, between multiple groups. We start with sample observations from multiple groups. Since ANOVA is looking to explain the total variance as combinations of variance from the various groups, we typically design a multiple groups experiment to test various independent factors that we hypothesis may influence the overall result. For example, in our A/B testing example of email templates, we could use ANOVA to simultaneously compare the effectiveness of various template changes. The control group could be our original template, and successive groups would have one specific change from that control template. The first group might have a new Subject line but an identical email. Another might have the original subject line but a new greeting within the body of the email. Successive groups would change a singular aspect of the original [control] template, but otherwise be identical. Once we have sample observations from each of these templates, we can then use ANOVA to analyze and compare their effectiveness.  
 
@@ -34,6 +34,10 @@ import pandas as pd
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
 ```
+
+    /Users/lore.dirick/anaconda3/lib/python3.6/site-packages/statsmodels/compat/pandas.py:56: FutureWarning: The pandas.core.datetools module is deprecated and will be removed in a future version. Please use the pandas.tseries module instead.
+      from pandas.core import datetools
+
 
 ## Loading the Data
 
