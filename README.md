@@ -3,7 +3,7 @@
 
 ## Introduction
 
-ANOVA (Analysis of Variance) is a method for generalizing of previous discussion regarding statistical tests to multiple groups. As we will see, ANOVA then partitions our total sum of square of deviations (from the mean) into sum of squares for each of these groups and sum of squares for error. 
+ANOVA (Analysis of Variance) is a method for generalizing statistical tests to multiple groups. As you'll see, ANOVA  analyses the overall variance of a dataset by partitioning the total sum of square of deviations (from the mean) into sum of squares for each of these groups and sum of squares for error. By comparing statistical test for multiple groups, it can serve as a useful alternative to the $t$-tests you've encountered thus far, when you wish to test multiple factors simultaneously.
 
 ## Objectives
 
@@ -14,17 +14,13 @@ You will be able to:
 
 ## Explanation of ANOVA
 
-Again ANOVA generalizes our procedures to test differences, such as in the mean of populations, between multiple groups. We start with sample observations from multiple groups. Since ANOVA is looking to explain the total variance as combinations of variance from the various groups, we typically design a multiple groups experiment to test various independent factors that we hypothesis may influence the overall result. For example, in our A/B testing example of email templates, we could use ANOVA to simultaneously compare the effectiveness of various template changes. The control group could be our original template, and successive groups would have one specific change from that control template. The first group might have a new Subject line but an identical email. Another might have the original subject line but a new greeting within the body of the email. Successive groups would change a singular aspect of the original [control] template, but otherwise be identical. Once we have sample observations from each of these templates, we can then use ANOVA to analyze and compare their effectiveness.  
+To perform ANOVA, you begin with sample observations from multiple groups. Since ANOVA is looking to explain the total variance as combinations of variance from the various groups, you typically design a multiple groups experiment to test various independent factors that we hypothesis may influence the overall result. For example, imagine an email campaign designed to optimize donation contributions. In order to get the most money in donations, one might send out two different emails, both copies being identical except for the subject line. This would form a sensible hypothesis test, but if you wanted to test multiple changes simultaneously, swapping out subject line, time sent, thank you gift offers, or other details in the email campaign, then ANOVA would be a more appropriate methodology. In this scenario, you would change one or more of these various features and record the various donations. Once you have sample observations from various combinations of these features, you can then use ANOVA to analyze and compare the effectiveness of the individual features themselves.  
 
-The general idea is to break the sum of square of deviations into multiple parts: the sum of squares of deviations of the mean of each of these test groups to the observations within the group itself, and the sum of squares of deviations of the mean of these test groups to the mean of all observations. 
+The general idea is to break the sum of square of deviations into multiple parts: the sum of squares of deviations of the mean of each of the test groups to the observations within the group itself, and the sum of squares of deviations of the mean of these test groups to the mean of all observations. 
 
-Let's return to our example to illustrate this. ANOVA is looking to describe overall variation from all of our sample observations. The theoretical motivation is that we are looking to break the overall variation apart as a combination of the variation from each of these individual factors as well as unaccounted for error or chance. After all, it is unreasonable to account for all influencing factors. In our email example, we will expect response variation from the people themselves, and while we may break apart our participants into demographic groups, forming additional groups within our ANOVA test, there will continue to be variation within the groups themselves.   
+This is easier to understand through the context of an example. For the email case described above,  ANOVA would compare the variance of donations within each of the groups to the overall variance of all donations (or lack thereof) as a whole. If the variance of a single group's donations versus that of the overall sample's is substantial, there is reason to reject the null hypothesis for that feature. This forms the foundation of the f-test which is at the heart of ANOVA. 
 
-After decomposing total variance as variance of the individual factors to their group mean (sum of square for treatments SST) and variance of these groups to the overall mean (sum of square for error SSE), we can compare these quantities using an f-distribution, which becomes our test statistic.
-
-Higher values of the F-statistic indicate a higher probability of that factor being influential. As with other distributions, we can also quantify this in terms of a desired signifigance level $\alpha$. For example, if we desire to have a .05 significance level as before, we would be looking for f values such that:
-
-$F>F_\alpha$
+Recall that you would not perform multiple t-tests with such a scenario because of the multiple comparisons problem. Type I errors will be confounded when conducting multiple t-tests. While the alpha threshold for any one test might be 0.05, it would not be surprising to reject the null hypothesis in at least one of these cases, just by pure chance, if you conduct 5 or 10 t-tests.
 
 ## Generating an ANOVA Table (AOV) in Python
 
@@ -124,7 +120,7 @@ df.head()
 
 ## Generating the ANOVA Table
 
-In order to generate the ANOVA table, we will fit a model and then generate the table from this object. The syntax for defining the model is a little different then what we've seen previously.  Our formula will be written as:
+In order to generate the ANOVA table, you fit a linear model and then generate the table from this object.  Our formula will be written as:
 
 ```Control_Column ~ C(factor_col1) + factor_col2 + C(factor_col3) + ... + X```
 
@@ -147,8 +143,8 @@ print(table)
 
 ## Reading the Table
 
-For now we will simply focus on the outermost columns. On the left, you can see our various groups, and on the right, the probability that the factor is indeed influential. Values < .05 (or whatever we set $\alpha$ to) indicate rejection of the null hypothesis. In this case, we can see all three factors appear influential, with management being the potentially most significant, followed by years experience and finally, educational degree.
+For now , simply focus on the outermost columns. On the left, you can see our various groups, and on the right, the probability that the factor is indeed influential. Values < .05 (or whatever we set $\alpha$ to) indicate rejection of the null hypothesis. In this case, notice that all three factors appear influential, with management being the potentially most significant, followed by years experience and finally, educational degree.
 
 ## Summary
 
-In this lesson, we examined the ANOVA technique to generalize A/B testing methods to multiple groups and factors.
+In this lesson, you examined the ANOVA technique to generalize A/B testing methods to multiple groups and factors.
