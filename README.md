@@ -1,4 +1,3 @@
-
 # ANOVA 
 
 ## Introduction
@@ -8,6 +7,7 @@ ANOVA (Analysis of Variance) is a method for generalizing statistical tests to m
 ## Objectives
 
 You will be able to:
+
 - Explain the methodology behind ANOVA tests 
 - Use ANOVA for testing multiple pairwise comparisons 
 
